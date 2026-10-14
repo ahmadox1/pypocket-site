@@ -1,28 +1,23 @@
-# PyPocket support correspondence — 90-day retention procedure
+# PyPocket — manual support-mail retention (90 days)
 
-**Owner:** Ahmed Alenzi  
-**Mailbox:** pypocket.support@gmail.com  
-**Policy:** Retain support correspondence for 90 calendar days **after closure**, except when longer retention is legally required. This runbook must be implemented operationally before publishing the revised privacy notice.
+**Developer:** Ahmed Alenzi  
+**Support mailbox:** pypocket.support@gmail.com  
+**Approved rule:** Retain support correspondence for **90 calendar days from the date a support case closes**, unless a longer legal retention obligation applies. Requests for earlier deletion should also be handled.
 
-## Manual operation (no integrations required)
+This is a **manual process**, as chosen by the developer. No Google Apps Script or Gmail integration is required.
 
-1. In Gmail, create labels `PyPocket/Open`, `PyPocket/Closed`, `PyPocket/Deletion-Request` and `PyPocket/Legal-Hold`. These labels organize cases; they **do not** automatically delete anything.
-2. When a support request comes in, assign `PyPocket/Open`. Keep a **private** register (not in a public repository) with ticket reference, sender email, opening date, and case status. Do not put message bodies, secrets, or sensitive project files in that register.
-3. When the matter is resolved, send the final response, mark the ticket closed, and record the **actual closure date** and a **deletion due date exactly 90 calendar days later**. Move the thread to `PyPocket/Closed` and remove `PyPocket/Open`.
-4. Set a weekly review calendar reminder to check the private register for due tickets. For each due ticket, check any legal retention obligations or active dispute first. If there is no valid reason to retain it, delete the related support emails and attachments from the mailbox and **Empty Trash** when appropriate; consider copies/exports you control as well. Record only the completion date and ticket reference in the private register. If held, document the reason and next review date privately.
-5. For an early deletion request sent to `pypocket.support@gmail.com` with subject **Support Data Deletion Request** (Arabic: **طلب حذف بيانات الدعم**), verify ownership if needed, identify all related correspondence under the developer's control, and complete the deletion or provide a clear reason for lawful retention. Record the outcome in the register; never ask for passwords, verification codes or API keys.
-6. Review and process new deletion requests regularly, preferably within a few business days, and ensure the privacy notice accurately reflects actual practices.
+## Practical workflow
 
-## Do not rely on Gmail age searches alone
+1. Keep a **private log**, outside the public GitHub repository. Suggested fields: `ticket reference | sender email | closed date | delete-on date | status | actual deletion date`. Avoid copying message bodies, attachments, access tokens or other sensitive details into the log.
+2. When the support issue is resolved, send a final reply and record the actual **closed date**. Set **delete-on = closed date + 90 calendar days**. If the ticket is reopened, update its status and recalculate from its later final closure.
+3. Review the log **at least once a week**. For entries past their delete-on date, search Gmail for the exact thread, confirm no ongoing case or valid legal retention requirement, delete the correspondence and any related copies you control, and record the completion date. Empty Trash when appropriate. Gmail's standard `older_than:90d` search is **not sufficient**; it uses a message's age, not the ticket closure date.
+4. If someone requests earlier deletion, receive it at **pypocket.support@gmail.com**, preferably with the subject **Support Data Deletion Request** / **طلب حذف بيانات الدعم**. Confirm which correspondence is theirs (verify ownership if necessary), delete records under your control when appropriate, and respond with confirmation or explain a lawful retention restriction.
+5. Keep Gmail access protected with multi-factor authentication. Never request passwords, one-time login codes or API tokens from users.
 
-Queries such as `older_than:90d` compare message dates, **not the date a support ticket was closed**. A case reopened or closed much later could be deleted too early. Use the recorded *closure date* to calculate retention.
+## Before publishing the revised privacy policy
 
-## Before publishing
+- [ ] Start the private log and make sure you can record each case's closing date and delete-on date.
+- [ ] Schedule a weekly reminder to review the log (or use an existing reliable routine).
+- [ ] Confirm the actual app release matches the privacy statements and Google Play's Data safety declarations.
 
-- [ ] Owner sets up the labels and a private closure/deletion register.
-- [ ] Owner sets up a recurring review reminder.
-- [ ] Owner tests the workflow with a dummy support thread, including earlier-deletion requests.
-- [ ] Owner confirms privacy statements against final APK/network/security audit and Play Console Data Safety.
-- [ ] Then publish the pending privacy-policy PR.
-
-This is an operating procedure; adding the file does not itself configure Gmail or ensure deletion.
+The policy's 90-day commitment applies **whether deletion is manual or automated**. This document does not itself delete email messages.
